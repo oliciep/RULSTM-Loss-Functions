@@ -371,7 +371,7 @@ def trainval(model, loaders, optimizer, epochs, start_epoch, start_best_perf):
                     #print(linear_labels[0], ' : ', probs_of_labels[0])
                     #print(linear_labels[9], ' : ', probs_of_labels[9])
                     #loss = torchmetrics.functional.hinge_loss(linear_preds, linear_labels, task='multiclass', squared=True, num_classes=234)
-                    loss = F.kl_div(linear_preds, probs_of_labels, reduction='batchmean')
+                    loss = torchmetrics.functional.hinge_loss(linear_preds, linear_labels, task='multiclass', squared=True, num_classes=234)
                     # get the predictions for anticipation time = 1s (index -4) (anticipation)
                     # or for the last time-step (100%) (early recognition)
                     # top5 accuracy at 1s
